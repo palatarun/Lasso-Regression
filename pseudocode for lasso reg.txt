@@ -1,0 +1,24 @@
+ pseudocode implementation of Lasso Regression:
+
+Input:
+
+X: the feature matrix of size (n_samples, n_features)
+y: the target vector of size (n_samples,)
+alpha: regularization parameter controlling the strength of L1 penalty
+Define the loss function:
+
+J(beta) = 1/(2 * n_samples) * ||y - X * beta||^2 + alpha * ||beta||_1, where ||.||_1 denotes the L1 norm
+Initialize beta to zeros or some random value.
+
+Set a convergence criterion, e.g., the maximum number of iterations or the change in the coefficients is smaller than a threshold.
+
+
+Repeat until the convergence criterion is met:
+
+Compute the gradient of the loss function with respect to beta.
+Update the coefficients using the Lasso update formula:
+beta_j = soft_thresholding_operator(z_j, alpha), where z_j is the j-th feature of X multiplied by the corresponding residuals and the Lasso thresholding operator is defined as:
+soft_thresholding_operator(z, lambda) = sign(z) * max(|z| - lambda, 0)
+Note that the Lasso update formula applies a shrinkage penalty to the coefficients, pushing some of them to zero.
+If the change in the coefficients is smaller than the convergence criterion, stop.
+Return the final coefficients beta.
